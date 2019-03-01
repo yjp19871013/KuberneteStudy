@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wordpress-configmap
+  namespace: default
+data:
+  mysql.host: ip:port
+  mysql.user: username
+  mysql.password: password

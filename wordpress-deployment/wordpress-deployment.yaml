@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress
+  labels:
+    deployment: wordpress
+spec:
+  minReadySeconds: 20
+  replicas: 3
+  selector:
+    matchLabels:
+      app: wordpress
+  strategy:
+    rollingUpdate:
+      maxSurge: 30%
+      maxUnavailable: 30%
+    type: RollingUpdate
+  template:
+    metadata:
+      name: wordpress
+      labels:
+        app: wordpress
+    spec:
+      containers:
+        - image: wordpress
+          imagePullPolicy: Always
+          name: wordpress
+          env:
+            - name: WORDPRESS_DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: wordpress-configmap
+                  key: mysql.host
+            - name: WORDPRESS_DB_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: wordpress-configmap
+                  key: mysql.user
+            - name: WORDPRESS_DB_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: wordpress-configmap
+                  key: mysql.password
+          ports:
+            - containerPort: 80
+              name: http
+              protocol: TCP
+      restartPolicy: Always

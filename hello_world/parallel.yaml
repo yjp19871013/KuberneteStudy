@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: hello-world-parallel
+  labels:
+    job: parallel
+spec:
+  parallelism: 2
+  completions: 6
+  template:
+    metadata:
+      labels:
+        app: hello-world
+    spec:
+      containers:
+        - name: hello-world
+          image: jiapengyin/hello_world
+          imagePullPolicy: IfNotPresent
+      restartPolicy: OnFailure

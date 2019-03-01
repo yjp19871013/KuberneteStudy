@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: wordpress
+  labels:
+    rs: wordpress
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: wordpress
+  template:
+    metadata:
+      name: wordpress
+      labels:
+        app: wordpress
+    spec:
+      containers:
+        - image: wordpress:latest
+          name: wordpress
+          env:
+            - name: WORDPRESS_DB_HOST
+              value: ip:port
+            - name: WORDPRESS_DB_USER
+              value: username
+            - name: WORDPRESS_DB_PASSWORD
+              value: password
+          ports:
+            - containerPort: 80
+              name: http
+              protocol: TCP

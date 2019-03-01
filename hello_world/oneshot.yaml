@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: hello-world-oneshot
+  labels:
+    job: oneshot
+spec:
+  template:
+    metadata:
+      labels:
+        app: hello-world
+    spec:
+      containers:
+        - name: hello-world
+          image: jiapengyin/hello_world
+          imagePullPolicy: IfNotPresent
+      restartPolicy: OnFailure

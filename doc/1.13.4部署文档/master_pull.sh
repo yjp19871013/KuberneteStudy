@@ -7,7 +7,7 @@ for imageName in ${images[@]} ; do
 done
 
 sudo docker pull carlziess/coredns-1.2.6
-sudo docker tag k8s.gcr.io/coredns-1.2.6:latest k8s.gcr.io/coredns:1.2.6
+sudo docker tag carlziess/coredns-1.2.6:latest k8s.gcr.io/coredns:1.2.6
 sudo docker rmi carlziess/coredns-1.2.6
 
 sudo docker pull jmgao1983/flannel:v0.11.0-amd64

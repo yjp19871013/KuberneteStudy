@@ -4,6 +4,6 @@ metadata:
   name: wordpress-configmap
   namespace: default
 data:
-  mysql.host: ip:port
+  mysql.host: ip or FQDN:port
   mysql.user: username
   mysql.password: password

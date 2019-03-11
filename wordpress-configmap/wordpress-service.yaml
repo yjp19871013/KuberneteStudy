@@ -12,5 +12,5 @@ spec:
     - port: service listening port
       name: http
       protocol: TCP
-      targetPort: pod port
+      targetPort: pod port or named port
       nodePort: machine port

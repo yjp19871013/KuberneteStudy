@@ -92,7 +92,7 @@ spec:
               name: emqx-configmap
               key: emqx.k8s-app-name
         tty: true
-
+      restartPolicy: Always
 ---
 
 apiVersion: v1

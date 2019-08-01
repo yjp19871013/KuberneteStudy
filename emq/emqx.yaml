@@ -17,7 +17,7 @@ metadata:
 data:
   emqx.discovery: k8s
   emqx.name: emqx
-  emqx.k8s-apiserver: http://masterIP:端口
+  emqx.k8s-apiserver: http://10.10.10.221:8080
   emqx.k8s-namespace: emqx
   emqx.k8s-service-name: emqx
   emqx.k8s-address-type: ip
@@ -91,7 +91,14 @@ spec:
             configMapKeyRef:
               name: emqx-configmap
               key: emqx.k8s-app-name
+        volumeMounts:
+          - mountPath: /etc/localtime
+            name: localtime
         tty: true
+      volumes:
+        - name: localtime
+          hostPath:
+            path: /etc/localtime
       restartPolicy: Always
 ---
 
